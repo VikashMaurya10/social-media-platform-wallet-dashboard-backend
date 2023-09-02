@@ -23,15 +23,18 @@ const updateWallet = async (req, res) => {
   const { id } = req.params;
   const { amount, remark } = req.body;
 
-  console.log("params", id);
-  console.log("body", amount, remark);
+  // console.log("params", id);
+  // console.log("body", req.body);
 
   const userData = await UserDataModel.findOne({ userId: id });
   if (!userData) HandleError(res, "User data not found");
+  // console.log(userData);
 
   try {
+    const newAmount = userData.balance + amount;
+
     const updated = await UserDataModel.findByIdAndUpdate(userData._id, {
-      balance: amount,
+      balance: newAmount,
       remark: remark,
     });
 
