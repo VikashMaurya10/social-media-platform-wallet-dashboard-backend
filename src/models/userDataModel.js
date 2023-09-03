@@ -12,12 +12,6 @@ const UserDataSchema = new mongoose.Schema(
       default: 0,
       require: true,
     },
-    remark: {
-      type: String,
-    },
-    trasectionsType: {
-      type: String,
-    },
   },
   { timestamps: true }
 );
